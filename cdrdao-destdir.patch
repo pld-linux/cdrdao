@@ -25,7 +25,7 @@
 -	$(INSTALL_DATA) pixmap_zoom-fit.xpm $(PIXMAPS_DIR)/pixmap_zoom-fit.xpm
 -	$(INSTALL_DATA) gcdmaster.desktop $(datadir)/gnome/apps/Applications/gcdmaster.desktop
 +	$(INSTALL_PROGRAM) $(PRG) $(DESTDIR)$(bindir)
-+	$(INSTALL_DATA) xcdrdao.man $(DESTDIR)$(man1dir)/xcdrdao.1
++	$(INSTALL_DATA) xcdrdao.man $(DESTDIR)$(man1dir)/gcdmaster.1x
 +	$(INSTALL_DATA) gcdmaster.png $(DESTDIR)$(PIXMAPS_DIR)/gcdmaster.png
 +	$(INSTALL_DATA) pixmap_audiocd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_audiocd.png
 +	$(INSTALL_DATA) pixmap_copycd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_copycd.png
@@ -43,7 +43,7 @@
 +	$(INSTALL_DATA) pixmap_zoom-out.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-out.xpm
 +	$(INSTALL_DATA) pixmap_zoom-selection.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-selection.xpm
 +	$(INSTALL_DATA) pixmap_zoom-fit.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-fit.xpm
-+	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/gnome/apps/Applications/gcdmaster.desktop
++	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/applications/gcdmaster.desktop
  
  installdirs:
 -	$(srcdir)/../mkinstalldirs $(bindir)
@@ -53,7 +53,7 @@
 +	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
 +	$(srcdir)/../mkinstalldirs $(DESTDIR)$(man1dir)
 +	$(srcdir)/../mkinstalldirs $(DESTDIR)$(PIXMAPS_DIR)
-+	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/gnome/apps/Applications
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/applications
  
  uninstall:
  	rm -f $(bindir)/$(PRG) $(man1dir)/xcdrdao.1
