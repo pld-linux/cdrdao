@@ -39,7 +39,7 @@ trybie masz znacznie wiêksz± kontrolê nad zawarto¶ci± p³ytki.
 
 %build
 (cd paranoia ; autoconf)
-%configure \
+%configure2_13 \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=%{_includedir}/pccts \
 	--x-includes=%{_prefix}/X11R6/includes
