@@ -18,6 +18,7 @@ Source2:	%{name}.drivers
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 Patch2:		%{name}-DESTDIR.patch
+Patch3:		%{name}-mm.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -71,6 +72,7 @@ niedestruktywne ciêcie danych audio.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
 
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if %{without gnome}
@@ -86,7 +88,8 @@ sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
 	--with-scglib-inc=/usr/include/schily \
-	--with-scglib-lib=/usr/lib 
+	--with-scglib-lib=/usr/lib \
+	--with-xdao
 
 %{__make}
 
