@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.bz2
@@ -23,10 +23,6 @@ BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	pccts >= 1.33MR33-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_xprefix	/usr/X11R6
-%define		_xbindir	%{_xprefix}/bin
-%define		_xmandir	%{_xprefix}/man
 
 %description
 Cdrdao records audio and data CD-Rs in Disk At Once mode. This mode
@@ -76,6 +72,8 @@ cd paranoia
 cd ..
 %{__autoconf}
 # false gtkmm-config path can be used to disable building of GNOME frontend
+applnkdir=%{_applnkdir}; export applnkdir
+PIXMAPS_DIR="%{_pixmapsdir}/gcdmaster"; export PIXMAPS_DIR
 %configure \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
@@ -95,15 +93,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CREDITS README README.PlexDAE Release*
-%attr(755,root,root) %{_bindir}/*
-%{_datadir}/cdrdao
-%{_mandir}/*/*
+%attr(755,root,root) %{_bindir}/cdrdao
+%{_mandir}/man1/cdrdao.*
 
 %if %{?_without_gnome:0}%{!?_without_gnome:1}
 %files gcdmaster
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_xbindir}/*
-%{_xmandir}/man1/*
+%attr(755,root,root) %{_bindir}/gcdmaster
+%{_mandir}/man1/gcdmaster.*
 %{_pixmapsdir}/*
-%{_applnkdir}/Applications/gcdmaster.desktop
+%{_applnkdir}/Utilities/CD-RW/gcdmaster.desktop
 %endif
