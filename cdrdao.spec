@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.7
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.src.tar.bz2
@@ -25,8 +25,7 @@ BuildRequires:	automake
 %{?with_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
 BuildRequires:	lame-libs-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	pccts >= 1.33MR33-7
-BuildRequires:	pccts-antlr
+BuildRequires:	pccts >= 1.33MR33-8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
