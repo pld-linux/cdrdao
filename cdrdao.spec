@@ -25,7 +25,7 @@ BuildRequires:	automake
 BuildRequires:	lame-libs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pccts >= 1.33MR33-6
-BuildRequires:	pccts-antlr
+BuildRequires:	antlr
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
