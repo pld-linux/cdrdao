@@ -6,18 +6,18 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.1.8
+Version:	1.1.9
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
-# Source0-md5:	10cfd445fa628fb32dacf02e555fdbba
+# Source0-md5:	dd7df809fca7db8e212a6522688c166b
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
 Source2:	%{name}.drivers
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
-Patch2:		%{name}-gcc34.patch
+Patch2:		%{name}-DESTDIR.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
