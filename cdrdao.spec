@@ -17,6 +17,7 @@ Source1:	%{name}.desktop
 Source2:	%{name}.drivers
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
+Patch2:		%{name}-gcc34.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -69,6 +70,7 @@ niedestruktywne ciêcie danych audio.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if %{without gnome}
