@@ -1,0 +1,42 @@
+--- cdrdao-1.1.5/xdao/Makefile.in.orig	Fri Nov  2 13:37:18 2001
++++ cdrdao-1.1.5/xdao/Makefile.in	Fri Nov  2 13:56:09 2001
+@@ -8,16 +8,16 @@
+ # 
+ # Source and Installation Paths
+ #
+-prefix  =      @prefix@
+-exec_prefix =  @exec_prefix@
++prefix  =      /usr/X11R6
++exec_prefix =  /usr/X11R6
+ srcdir =       @srcdir@
+-datadir  =     @datadir@
++datadir  =     /usr/X11R6/share
+ VPATH =        @srcdir@
+ #
+ # Installation directories for binaries and manual pages
+ #
+-bindir  =      @bindir@
+-mandir  =      @mandir@
++bindir  =      /usr/X11R6/bin
++mandir  =      /usr/X11R6/man
+ man1dir =      $(mandir)/man1
+ #
+ # install program
+@@ -71,7 +71,7 @@
+ 
+ install: all installdirs
+ 	$(INSTALL_PROGRAM) $(PRG) $(DESTDIR)$(bindir)
+-	$(INSTALL_DATA) xcdrdao.man $(DESTDIR)$(man1dir)/xcdrdao.1
++	$(INSTALL_DATA) xcdrdao.man $(DESTDIR)$(man1dir)/gcdmaster.1x
+ 	$(INSTALL_DATA) gcdmaster.png $(DESTDIR)$(PIXMAPS_DIR)/gcdmaster.png
+ 	$(INSTALL_DATA) pixmap_audiocd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_audiocd.png
+ 	$(INSTALL_DATA) pixmap_copycd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_copycd.png
+@@ -80,7 +80,7 @@
+ 	$(INSTALL_DATA) pixmap_help.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_help.png
+ 	$(INSTALL_DATA) pixmap_mixedcd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_mixedcd.png
+ 	$(INSTALL_DATA) pixmap_open.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_open.png
+-	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/gnome/apps/Applications/gcdmaster.desktop
++	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/applnk/Applications/gcdmaster.desktop
+ 
+ installdirs:
+ 	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
