@@ -12,14 +12,14 @@ Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 License:	GPL
 Source0:	http://www.ping.de/sites/daneb/%{name}-%{version}.src.tar.gz
-Patch0:		cdrdao-destdir.patch
-BuildRequires:	gcc-c++
+Patch0:		%{name}-destdir.patch
+Patch1:		%{name}-opt.patch
 BuildRequires:	libstdc++-devel
+BuildRequires:	libsigc++-devel
 BuildRequires:	pccts-devel
 # Required by frontend.
 #BuildRequires:	gtk+-devel
 #BuildRequires:	gtkmm-devel
-BuildRequires:	libsigc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,10 +33,12 @@ trybie masz znacznie wiêksz± kontrolê nad zawarto¶ci± p³ytki.
 %prep
 %setup  -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 #autoheader;autoconf;automake; 
-CFLAGS="-I%{_prefix}/X11R6/includes"; export CFLAGS
+(cd paranoia ; autoconf)
+#CFLAGS="-I%{_prefix}/X11R6/includes"
 %configure \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=%{_includedir}/pccts \
