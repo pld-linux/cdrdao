@@ -1,0 +1,40 @@
+diff -urN cdrdao-1.1.3.orig/dao/Makefile.in cdrdao-1.1.3/dao/Makefile.in
+--- cdrdao-1.1.3.orig/dao/Makefile.in	Tue Oct 26 18:13:45 1999
++++ cdrdao-1.1.3/dao/Makefile.in	Mon Apr 24 18:31:41 2000
+@@ -61,12 +61,12 @@
+ all: $(PRG)
+ 
+ install: all installdirs
+-	$(INSTALL_PROGRAM) $(PRG) $(bindir)
+-	$(INSTALL_DATA) cdrdao.man $(man1dir)/cdrdao.1
++	$(INSTALL_PROGRAM) $(PRG) $(DESTDIR)$(bindir)
++	$(INSTALL_DATA) cdrdao.man $(DESTDIR)$(man1dir)/cdrdao.1
+ 
+ installdirs:
+-	$(srcdir)/../mkinstalldirs $(bindir)
+-	$(srcdir)/../mkinstalldirs $(man1dir)
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(man1dir)
+ 
+ clean:
+ 	rm -f *.o $(PRG)
+diff -urN cdrdao-1.1.3.orig/xdao/Makefile.in cdrdao-1.1.3/xdao/Makefile.in
+--- cdrdao-1.1.3.orig/xdao/Makefile.in	Tue Oct 26 18:13:46 1999
++++ cdrdao-1.1.3/xdao/Makefile.in	Mon Apr 24 18:00:57 2000
+@@ -59,12 +59,12 @@
+ all: $(PRG)
+ 
+ install: all installdirs
+-	$(INSTALL_PROGRAM) $(PRG) $(bindir)
+-	$(INSTALL_DATA) xcdrdao.man $(man1dir)/xcdrdao.1
++	$(INSTALL_PROGRAM) $(PRG) $(DESTDIR)$(bindir)
++	$(INSTALL_DATA) xcdrdao.man $(DESTDIR)$(man1dir)/xcdrdao.1
+ 
+ installdirs:
+-	$(srcdir)/../mkinstalldirs $(bindir)
+-	$(srcdir)/../mkinstalldirs $(man1dir)
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(man1dir)
+ 
+ clean:
+ 	rm -f *.o $(PRG)
