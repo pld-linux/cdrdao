@@ -36,14 +36,14 @@
  	$(INSTALL_DATA) pixmap_mixedcd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_mixedcd.png
  	$(INSTALL_DATA) pixmap_open.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_open.png
 -	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/gnome/apps/Applications/gcdmaster.desktop
-+	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/applnk/Applications/gcdmaster.desktop
++	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/applnk/Utilities/CD-RW/gcdmaster.desktop
  
  installdirs:
  	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
  	$(srcdir)/../mkinstalldirs $(DESTDIR)$(man1dir)
  	$(srcdir)/../mkinstalldirs $(DESTDIR)$(PIXMAPS_DIR)
 -	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/gnome/apps/Applications
-+	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/applnk/Applications
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/applnk/Utilities/CD-RW
  
  uninstall:
  	rm -f $(bindir)/$(PRG) $(man1dir)/xcdrdao.1
