@@ -4,6 +4,7 @@
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
+Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.5
 Release:	1
@@ -36,6 +37,14 @@ gives much better control over contents of CD.
 %description -l pl
 Cdrdao zapisuje p³ytki audio i z danymi w trybie Disk At Once. W tym
 trybie masz znacznie wiêksz± kontrolê nad zawarto¶ci± p³ytki.
+
+%description -l pt_BR
+Escreve CD-Rs de áudio em modo "disk-at-once" (DAO) permitindo
+controle sobre pre-gaps (tamanho reduzido a 0, dados não zerados de
+áudio) e informações de sub-canais como códigos ISRC. Todos os dados
+que são escritos no disco devem ser especificados através de um
+arquivo texto. Dados de áudio também podem estar no formato WAVE ou
+raw.
 
 %package gcdmaster
 Summary:	GNOME frontend to cdrdao for composing audio CDs
