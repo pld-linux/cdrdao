@@ -54,5 +54,5 @@ Type=Application
 Exec=gcdmaster
 Icon=gcdmaster.png
 Terminal=false
-Categories=GNOME;Application;AudioVideo;DiscBurning;
+Categories=GTK;GNOME;Utility;DiscBurning;
 # vi: encoding=utf-8
