@@ -1,13 +1,13 @@
 #
 # Conditional build:
-# _without_gnome	- without GNOME frontend (gcdmaster)
+%bcond_with	gnome	# with gnome1
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.7
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.src.tar.bz2
@@ -19,9 +19,9 @@ Patch3:		%{name}-gcdmaster-paths.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{!?_without_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
-%{!?_without_gnome:BuildRequires:	gnomemm-devel >= 1.1.17}
-%{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
+%{?with_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
+%{?with_gnome:BuildRequires:	gnomemm-devel >= 1.1.17}
+%{?with_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
 BuildRequires:	lame-libs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pccts >= 1.33MR33-6
@@ -82,7 +82,7 @@ PIXMAPS_DIR="%{_pixmapsdir}/gcdmaster"; export PIXMAPS_DIR
 %configure \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
-	%{?_without_gnome:--with-gtkmm-exec-prefix=/}
+	%{?without_gnome:--with-gtkmm-exec-prefix=/}
 
 %{__make}
 
@@ -104,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/cdrdao/drivers
 %{_mandir}/man1/cdrdao.*
 
-%if %{?_without_gnome:0}%{!?_without_gnome:1}
+%if %{with gnome}
 %files gcdmaster
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gcdmaster
