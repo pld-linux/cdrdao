@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.5
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.gz
@@ -73,7 +73,9 @@ niedestruktywne ciêcie danych audio.
 %patch3 -p1
 
 %build
-(cd paranoia ; autoconf)
+cd paranoia
+{__autoconf}
+cd ..
 %{__autoconf}
 # false gtkmm-config path can be used to disable building of GNOME frontend
 %configure \
