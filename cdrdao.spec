@@ -7,7 +7,7 @@ Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.7
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.src.tar.bz2
@@ -17,6 +17,7 @@ Patch1:		%{name}-opt.patch
 Patch2:		%{name}-nolibs.patch
 Patch3:		%{name}-gcdmaster-paths.patch
 Patch4:		%{name}-pccts-antlr.patch
+Patch5:		%{name}-5-debian.patch.gz
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -71,12 +72,14 @@ niedestruktywne ciêcie danych audio.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 cd paranoia
 %{__autoconf}
 cd ..
 %{__autoconf}
+sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 # false gtkmm-config path can be used to disable building of GNOME frontend
 applnkdir=%{_applnkdir}; export applnkdir
 PIXMAPS_DIR="%{_pixmapsdir}/gcdmaster"; export PIXMAPS_DIR
