@@ -1,29 +1,27 @@
-#
+# TODO:
+# - .desktop and icon file for gcdmaster
 # Conditional build:
-%bcond_with	gnome1	# with gnome1
+%bcond_without	gnome	# without gcdmaster
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.1.7
-Release:	7
-License:	GPL
+Version:	1.1.8
+Release:	0.1
+License:	GPL v2+
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.src.tar.bz2
-# Source0-md5: a85c0fa006ad3af64b76fd86b10b2ad4
-Patch0:		%{name}-destdir.patch
+Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
+# Source0-md5:	10cfd445fa628fb32dacf02e555fdbba
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-nolibs.patch
 Patch3:		%{name}-pccts-antlr.patch
-Patch4:		%{name}-5-debian.patch.gz
-Patch5:		%{name}-desktop.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_gnome1:BuildRequires:	gnome-libs-devel >= 1.2.3}
-%{?with_gnome1:BuildRequires:	gnomemm-devel >= 1.1.17}
-%{?with_gnome1:BuildRequires:	gtkmm-devel >= 1.2.5}
+BuildRequires:	cdrtools-devel >= 3:2.01a25
+%{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.0.0}
+%{?with_gnome:BuildRequires:	gtkmm-devel >= 2.2.8}
 BuildRequires:	lame-libs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pccts >= 1.33MR33-8
@@ -67,25 +65,22 @@ niedestruktywne ciêcie danych audio.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+#%%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
-cd paranoia
-%{__autoconf}
-cd ..
+%if %{without gnome}
+sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
+%endif
 %{__autoconf}
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
-# false gtkmm-config path can be used to disable building of GNOME frontend
 PIXMAPS_DIR="%{_pixmapsdir}/gcdmaster"; export PIXMAPS_DIR
 %configure \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
-	%{?without_gnome1:--with-gtkmm-exec-prefix=/}
+	--with-scglib-inc=/usr/include/schily \
+	--with-scglib-lib=/usr/lib 
 
 %{__make}
 
@@ -100,18 +95,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CREDITS README README.PlexDAE Release*
+%doc CREDITS README README.PlexDAE 
 %attr(755,root,root) %{_bindir}/cdrdao
 %attr(755,root,root) %{_bindir}/toc2*
-%dir %{_datadir}/cdrdao
-%{_datadir}/cdrdao/drivers
-%{_mandir}/man1/cdrdao.*
+%attr(755,root,root) %{_bindir}/cue2toc
+#%dir %{_datadir}/cdrdao
+#%{_datadir}/cdrdao/drivers
+#%{_mandir}/man1/cdrdao.*
+%{_mandir}/man1/cdrdao.1*
+%{_mandir}/man1/cue2toc.1*
 
-%if %{with gnome1}
+%if %{with gnome}
 %files gcdmaster
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gcdmaster
-%{_desktopdir}/gcdmaster.desktop
-%{_pixmapsdir}/*
+#%{_desktopdir}/gcdmaster.desktop
+#%{_pixmapsdir}/*
 %{_mandir}/man1/gcdmaster.*
 %endif
