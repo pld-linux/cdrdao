@@ -1,4 +1,4 @@
-# NOTE:
+# NOTE:		
 #	Currently this package does not contain X interface. This is due to
 #	the fact, that it doesn't compile with current version of gtkmm. I
 #	have asked author if he is going to update this program, but I've got
@@ -23,12 +23,12 @@ BuildRequires:	libsigc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Cdrdao records audio and data CD-Rs in Disk At Once mode. This mode gives
-much better control over contents of CD.
+Cdrdao records audio and data CD-Rs in Disk At Once mode. This mode
+gives much better control over contents of CD.
 
 %description -l pl
-Cdrdao zapisuje p³ytki audio i z danymi w trybie Disk At Once. W tym trybie
-masz znacznie wiêksz± kontrolê nad zawarto¶ci± p³ytki.
+Cdrdao zapisuje p³ytki audio i z danymi w trybie Disk At Once. W tym
+trybie masz znacznie wiêksz± kontrolê nad zawarto¶ci± p³ytki.
 
 %prep
 %setup  -q
