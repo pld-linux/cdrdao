@@ -17,6 +17,7 @@ Patch1:		%{name}-opt.patch
 Patch2:		%{name}-nolibs.patch
 Patch3:		%{name}-gcdmaster-paths.patch
 URL:		http://cdrdao.sourceforge.net/
+BuildRequires:	antlr
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
@@ -24,7 +25,7 @@ BuildRequires:	automake
 %{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
 BuildRequires:	lame-libs-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	pccts >= 1.33MR33-4
+BuildRequires:	pccts >= 1.33MR33-6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
