@@ -74,7 +74,7 @@ niedestruktywne ciêcie danych audio.
 
 %build
 (cd paranoia ; autoconf)
-autoconf
+%{__autoconf}
 # false gtkmm-config path can be used to disable building of GNOME frontend
 %configure \
 	--with-pcctsbin=%{_bindir} \
