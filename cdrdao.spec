@@ -10,8 +10,6 @@ Version:	1.1.5
 Release:	2
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.gz
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
@@ -51,11 +49,6 @@ raw.
 Summary:	GNOME frontend to cdrdao for composing audio CDs
 Summary(pl):	Frontend GNOME do cdrdao do sk³adania p³yt CD-Audio
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	%{name} = %{version}
 
 %description gcdmaster
