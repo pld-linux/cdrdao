@@ -28,6 +28,7 @@ BuildRequires:	pccts-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_xprefix	/usr/X11R6
+%define		_xbindir	%{_xprefix}/bin
 %define		_xmandir	%{_xprefix}/man
 
 %description
@@ -84,7 +85,6 @@ autoconf
 	--with-pcctsinc=%{_includedir}/pccts \
 	%{?_without_gnome:--with-gtkmm-exec-prefix=/}
 
-#	--x-includes=%{_prefix}/X11R6/includes \
 %{__make}
 
 %install
