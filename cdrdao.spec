@@ -41,7 +41,7 @@ CFLAGS="-I%{_prefix}/X11R6/includes"; export CFLAGS
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=%{_includedir}/pccts \
 	--x-includes=%{_prefix}/X11R6/includes
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
