@@ -80,7 +80,7 @@ cp -f /usr/share/automake/config.* .
 # false gtkmm-config path can be used to disable building of GNOME frontend
 %configure \
 	--with-pcctsbin=%{_bindir} \
-	--with-pcctsinc=%{_includedir}/pccts \
+	--with-pcctsinc=/usr/lib/pccts/h \
 	%{?_without_gnome:--with-gtkmm-exec-prefix=/}
 
 %{__make}
