@@ -12,6 +12,7 @@ License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.gz
 # Source0-md5:	482da7ab61ae29f98072e3c3e1e012aa
+Source1:	%{name}.desktop
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-acfix.patch
@@ -91,6 +92,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Utilities/CD-RW/gcdmaster.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
