@@ -15,14 +15,16 @@ Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-acfix.patch
 Patch3:		%{name}-gcdmaster-paths.patch
+Patch4:		%{name}-gcc3.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
+BuildRequires:	automake
+%{!?_without_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
+%{!?_without_gnome:BuildRequires:	gnomemm-devel >= 1.1.17}
+%{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++1-devel
 BuildRequires:	pccts-devel
-%{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
-%{!?_without_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
-%{!?_without_gnome:BuildRequires:	gnomemm-devel >= 1.1.17}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_xprefix	/usr/X11R6
@@ -71,11 +73,13 @@ niedestruktywne ciêcie danych audio.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 cd paranoia
 %{__autoconf}
 cd ..
+cp -f /usr/share/automake/config.* .
 %{__autoconf}
 # false gtkmm-config path can be used to disable building of GNOME frontend
 %configure \
