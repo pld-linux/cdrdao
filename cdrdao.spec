@@ -13,8 +13,8 @@ Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
 # Source0-md5:	10cfd445fa628fb32dacf02e555fdbba
 Source1:	%{name}.desktop
-Source2:	http://cdrdao.sourceforge.net/cdrdao-1.1.5.drivers
-# Source2-md5:	36921e93683e10103d2f88b2a2411fe8
+# http://cdrdao.sourceforge.net/drives.html#dt
+Source2:	%{name}.drivers
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 URL:		http://cdrdao.sourceforge.net/
