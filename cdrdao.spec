@@ -18,7 +18,7 @@ Patch3:		%{name}-gcdmaster-paths.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	libstdc++-devel
-BuildRequires:	libsigc++-devel
+BuildRequires:	libsigc++1-devel
 BuildRequires:	pccts-devel
 %{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
