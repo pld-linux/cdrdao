@@ -7,12 +7,14 @@ Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.8
-Release:	0.4
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
 # Source0-md5:	10cfd445fa628fb32dacf02e555fdbba
 Source1:	%{name}.desktop
+Source2:	http://cdrdao.sourceforge.net/cdrdao-1.1.5.drivers
+# Source2-md5:	36921e93683e10103d2f88b2a2411fe8
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 URL:		http://cdrdao.sourceforge.net/
@@ -88,13 +90,14 @@ sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/%{name}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/gcdmaster.desktop
 install xdao/stock/gcdmaster.png $RPM_BUILD_ROOT%{_pixmapsdir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/drivers
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -105,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cdrdao
 %attr(755,root,root) %{_bindir}/toc2*
 %attr(755,root,root) %{_bindir}/cue2toc
+%{_datadir}/%{name}
 %{_mandir}/man1/cdrdao.1*
 %{_mandir}/man1/cue2toc.1*
 
