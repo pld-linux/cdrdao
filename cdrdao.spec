@@ -22,7 +22,7 @@ BuildRequires:	automake
 %{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++1-devel
-BuildRequires:	pccts-devel
+BuildRequires:	pccts >= 1.33MR33-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_xprefix	/usr/X11R6
