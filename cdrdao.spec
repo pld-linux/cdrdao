@@ -7,22 +7,23 @@ Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.5
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.gz
+# Source0-md5:	482da7ab61ae29f98072e3c3e1e012aa
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-acfix.patch
 Patch3:		%{name}-gcdmaster-paths.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
-BuildRequires:	libstdc++-devel
-BuildRequires:	libsigc++-devel
-BuildRequires:	pccts-devel
 %{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
 %{!?_without_gnome:BuildRequires:	gnomemm-devel >= 1.1.17}
+BuildRequires:	libstdc++-devel
+BuildRequires:	libsigc++-devel
+BuildRequires:	pccts-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_xprefix	/usr/X11R6
@@ -49,7 +50,7 @@ raw.
 Summary:	GNOME frontend to cdrdao for composing audio CDs
 Summary(pl):	Frontend GNOME do cdrdao do sk³adania p³yt CD-Audio
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description gcdmaster
 gcdmaster allows the creation of toc-files for cdrdao and can control
@@ -106,5 +107,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_xbindir}/*
 %{_xmandir}/man1/*
 %{_pixmapsdir}/*
-%{_applnkdir}/Applications/gcdmaster.desktop
+%{_applnkdir}/Utilities/CD-RW/gcdmaster.desktop
 %endif
