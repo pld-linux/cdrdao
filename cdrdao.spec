@@ -13,18 +13,18 @@ License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
 # Source0-md5:	10cfd445fa628fb32dacf02e555fdbba
-Patch1:		%{name}-opt.patch
-Patch2:		%{name}-nolibs.patch
-Patch3:		%{name}-pccts-antlr.patch
+Patch0:		%{name}-nolibs.patch
+Patch1:		%{name}-pccts-antlr.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdrtools-devel >= 3:2.01a25
 %{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.0.0}
 %{?with_gnome:BuildRequires:	gtkmm-devel >= 2.2.8}
-BuildRequires:	lame-libs-devel
+BuildRequires:	lame-libs-devel >= 3.92
 BuildRequires:	libstdc++-devel
 BuildRequires:	pccts >= 1.33MR33-8
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,7 +47,7 @@ raw.
 Summary:	GNOME frontend to cdrdao for composing audio CDs
 Summary(pl):	Frontend GNOME do cdrdao do sk³adania p³yt CD-Audio
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description gcdmaster
 gcdmaster allows the creation of toc-files for cdrdao and can control
@@ -65,17 +65,19 @@ niedestruktywne ciêcie danych audio.
 
 %prep
 %setup -q
-#%%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%patch0 -p1
+%patch1 -p1
 
-%build
+sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if %{without gnome}
 sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
 %endif
+
+%build
+%{__aclocal}
 %{__autoconf}
-sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
-PIXMAPS_DIR="%{_pixmapsdir}/gcdmaster"; export PIXMAPS_DIR
+%{__autoheader}
+%{__automake}
 %configure \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
@@ -99,9 +101,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cdrdao
 %attr(755,root,root) %{_bindir}/toc2*
 %attr(755,root,root) %{_bindir}/cue2toc
-#%dir %{_datadir}/cdrdao
-#%{_datadir}/cdrdao/drivers
-#%{_mandir}/man1/cdrdao.*
 %{_mandir}/man1/cdrdao.1*
 %{_mandir}/man1/cue2toc.1*
 
