@@ -7,7 +7,7 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Name:		cdrdao
 Version:	1.1.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -42,7 +42,8 @@ trybie masz znacznie wiêksz± kontrolê nad zawarto¶ci± p³ytki.
 %configure2_13 \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=%{_includedir}/pccts \
-	--x-includes=%{_prefix}/X11R6/includes
+	--x-includes=%{_prefix}/X11R6/includes \
+	--with-gtkmm-exec-prefix=/usr
 %{__make}
 
 %install
