@@ -1,27 +1,5 @@
 --- cdrdao-1.1.7/xdao/Makefile.in.orig	Wed Dec 25 21:09:53 2002
 +++ cdrdao-1.1.7/xdao/Makefile.in	Wed Dec 25 21:12:03 2002
-@@ -8,16 +8,16 @@
- # 
- # Source and Installation Paths
- #
--prefix  =      @prefix@
--exec_prefix =  @exec_prefix@
-+prefix  =      /usr/X11R6
-+exec_prefix =  /usr/X11R6
- srcdir =       @srcdir@
--datadir  =     @datadir@
-+datadir  =     /usr/X11R6/share
- VPATH =        @srcdir@
- #
- # Installation directories for binaries and manual pages
- #
--bindir  =      @bindir@
--mandir  =      @mandir@
-+bindir  =      /usr/X11R6/bin
-+mandir  =      /usr/X11R6/man
- man1dir =      $(mandir)/man1
- #
- # install program
 @@ -72,7 +72,7 @@
  
  install: all installdirs
@@ -36,14 +14,14 @@
  	$(INSTALL_DATA) pixmap_zoom-selection.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-selection.xpm
  	$(INSTALL_DATA) pixmap_zoom-fit.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-fit.xpm
 -	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/gnome/apps/Applications/gcdmaster.desktop
-+	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/applnk/Applications/gcdmaster.desktop
++	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/applnk/Utilities/CD-RW/gcdmaster.desktop
  
  installdirs:
  	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
  	$(srcdir)/../mkinstalldirs $(DESTDIR)$(man1dir)
  	$(srcdir)/../mkinstalldirs $(DESTDIR)$(PIXMAPS_DIR)
 -	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/gnome/apps/Applications
-+	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/applnk/Applications/
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/applnk/Utilities/CD-RW
  
  uninstall:
  	rm -f $(bindir)/$(PRG) $(man1dir)/xcdrdao.1

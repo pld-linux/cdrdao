@@ -13,6 +13,7 @@ Group:		Applications/System
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.bz2
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
+Patch2:		%{name}-nolibs.patch
 Patch3:		%{name}-gcdmaster-paths.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
@@ -20,6 +21,7 @@ BuildRequires:	automake
 %{!?_without_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
 %{!?_without_gnome:BuildRequires:	gnomemm-devel >= 1.1.17}
 %{!?_without_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
+BuildRequires:	lame-libs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pccts >= 1.33MR33-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -64,6 +66,7 @@ niedestruktywne ciêcie danych audio.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 %patch3 -p1
 
 %build
@@ -94,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CREDITS README README.PlexDAE Release*
 %attr(755,root,root) %{_bindir}/cdrdao
+%attr(755,root,root) %{_bindir}/toc2*
+%dir %{_datadir}/cdrdao
+%{_datadir}/cdrdao/drivers
 %{_mandir}/man1/cdrdao.*
 
 %if %{?_without_gnome:0}%{!?_without_gnome:1}
