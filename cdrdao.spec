@@ -1,5 +1,4 @@
-# TODO:
-# - icon file for gcdmaster
+#
 # Conditional build:
 %bcond_without	gnome	# without gcdmaster
 #
@@ -90,7 +89,7 @@ sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
