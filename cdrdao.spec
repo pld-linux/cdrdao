@@ -10,7 +10,7 @@ Version:	1.1.7
 Release:	3
 License:	GPL
 Group:		Applications/System
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.bz2
+Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.src.tar.bz2
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-nolibs.patch
