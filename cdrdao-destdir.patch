@@ -1,6 +1,64 @@
-diff -Nur cdrdao-1.1.5.orig/dao/Makefile.in cdrdao-1.1.5/dao/Makefile.in
---- cdrdao-1.1.5.orig/dao/Makefile.in	Sun Apr 29 15:42:08 2001
-+++ cdrdao-1.1.5/dao/Makefile.in	Fri Nov  2 12:59:50 2001
+--- cdrdao-1.1.7/xdao/Makefile.in.orig	Sun Oct  6 20:53:56 2002
++++ cdrdao-1.1.7/xdao/Makefile.in	Wed Dec 25 20:59:56 2002
+@@ -71,32 +71,32 @@
+ all: $(PRG)
+ 
+ install: all installdirs
+-	$(INSTALL_PROGRAM) $(PRG) $(bindir)
+-	$(INSTALL_DATA) xcdrdao.man $(man1dir)/xcdrdao.1
+-	$(INSTALL_DATA) gcdmaster.png $(PIXMAPS_DIR)/gcdmaster.png
+-	$(INSTALL_DATA) pixmap_audiocd.png $(PIXMAPS_DIR)/pixmap_audiocd.png
+-	$(INSTALL_DATA) pixmap_copycd.png $(PIXMAPS_DIR)/pixmap_copycd.png
+-	$(INSTALL_DATA) pixmap_datacd.png $(PIXMAPS_DIR)/pixmap_datacd.png
+-	$(INSTALL_DATA) pixmap_dumpcd.png $(PIXMAPS_DIR)/pixmap_dumpcd.png
+-	$(INSTALL_DATA) pixmap_help.png $(PIXMAPS_DIR)/pixmap_help.png
+-	$(INSTALL_DATA) pixmap_mixedcd.png $(PIXMAPS_DIR)/pixmap_mixedcd.png
+-	$(INSTALL_DATA) pixmap_open.png $(PIXMAPS_DIR)/pixmap_open.png
+-	$(INSTALL_DATA) pixmap_play-start.xpm $(PIXMAPS_DIR)/pixmap_play-start.xpm
+-	$(INSTALL_DATA) pixmap_play-pause.xpm $(PIXMAPS_DIR)/pixmap_play-pause.xpm
+-	$(INSTALL_DATA) pixmap_play-stop.xpm $(PIXMAPS_DIR)/pixmap_play-stop.xpm
+-	$(INSTALL_DATA) pixmap_cursor-tool.xpm $(PIXMAPS_DIR)/pixmap_cursor-tool.xpm
+-	$(INSTALL_DATA) pixmap_zoom-tool.xpm $(PIXMAPS_DIR)/pixmap_zoom-tool.xpm
+-	$(INSTALL_DATA) pixmap_zoom-in.xpm $(PIXMAPS_DIR)/pixmap_zoom-in.xpm
+-	$(INSTALL_DATA) pixmap_zoom-out.xpm $(PIXMAPS_DIR)/pixmap_zoom-out.xpm
+-	$(INSTALL_DATA) pixmap_zoom-selection.xpm $(PIXMAPS_DIR)/pixmap_zoom-selection.xpm
+-	$(INSTALL_DATA) pixmap_zoom-fit.xpm $(PIXMAPS_DIR)/pixmap_zoom-fit.xpm
+-	$(INSTALL_DATA) gcdmaster.desktop $(datadir)/gnome/apps/Applications/gcdmaster.desktop
++	$(INSTALL_PROGRAM) $(PRG) $(DESTDIR)$(bindir)
++	$(INSTALL_DATA) xcdrdao.man $(DESTDIR)$(man1dir)/xcdrdao.1
++	$(INSTALL_DATA) gcdmaster.png $(DESTDIR)$(PIXMAPS_DIR)/gcdmaster.png
++	$(INSTALL_DATA) pixmap_audiocd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_audiocd.png
++	$(INSTALL_DATA) pixmap_copycd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_copycd.png
++	$(INSTALL_DATA) pixmap_datacd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_datacd.png
++	$(INSTALL_DATA) pixmap_dumpcd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_dumpcd.png
++	$(INSTALL_DATA) pixmap_help.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_help.png
++	$(INSTALL_DATA) pixmap_mixedcd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_mixedcd.png
++	$(INSTALL_DATA) pixmap_open.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_open.png
++	$(INSTALL_DATA) pixmap_play-start.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_play-start.xpm
++	$(INSTALL_DATA) pixmap_play-pause.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_play-pause.xpm
++	$(INSTALL_DATA) pixmap_play-stop.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_play-stop.xpm
++	$(INSTALL_DATA) pixmap_cursor-tool.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_cursor-tool.xpm
++	$(INSTALL_DATA) pixmap_zoom-tool.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-tool.xpm
++	$(INSTALL_DATA) pixmap_zoom-in.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-in.xpm
++	$(INSTALL_DATA) pixmap_zoom-out.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-out.xpm
++	$(INSTALL_DATA) pixmap_zoom-selection.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-selection.xpm
++	$(INSTALL_DATA) pixmap_zoom-fit.xpm $(DESTDIR)$(PIXMAPS_DIR)/pixmap_zoom-fit.xpm
++	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/gnome/apps/Applications/gcdmaster.desktop
+ 
+ installdirs:
+-	$(srcdir)/../mkinstalldirs $(bindir)
+-	$(srcdir)/../mkinstalldirs $(man1dir)
+-	$(srcdir)/../mkinstalldirs $(PIXMAPS_DIR)
+-	$(srcdir)/../mkinstalldirs $(datadir)/gnome/apps/Applications
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(man1dir)
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(PIXMAPS_DIR)
++	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/gnome/apps/Applications
+ 
+ uninstall:
+ 	rm -f $(bindir)/$(PRG) $(man1dir)/xcdrdao.1
+--- cdrdao-1.1.7/dao/Makefile.in.orig	Thu Dec 26 09:27:54 2002
++++ cdrdao-1.1.7/dao/Makefile.in	Thu Dec 26 09:27:03 2002
 @@ -67,14 +67,14 @@
  all: $(PRG)
  
@@ -22,45 +80,18 @@ diff -Nur cdrdao-1.1.5.orig/dao/Makefile.in cdrdao-1.1.5/dao/Makefile.in
  
  clean:
  	rm -f *.o $(PRG)
-diff -Nur cdrdao-1.1.5.orig/xdao/Makefile.in cdrdao-1.1.5/xdao/Makefile.in
---- cdrdao-1.1.5.orig/xdao/Makefile.in	Sun Apr 29 15:42:09 2001
-+++ cdrdao-1.1.5/xdao/Makefile.in	Fri Nov  2 13:00:36 2001
-@@ -70,23 +70,23 @@
- all: $(PRG)
+--- cdrdao-1.1.7/utils/Makefile.in.orig	Sun Oct  6 20:53:56 2002
++++ cdrdao-1.1.7/utils/Makefile.in	Thu Dec 26 09:31:35 2002
+@@ -53,10 +53,10 @@
+ all: @utils_targets@
  
  install: all installdirs
--	$(INSTALL_PROGRAM) $(PRG) $(bindir)
--	$(INSTALL_DATA) xcdrdao.man $(man1dir)/xcdrdao.1
--	$(INSTALL_DATA) gcdmaster.png $(PIXMAPS_DIR)/gcdmaster.png
--	$(INSTALL_DATA) pixmap_audiocd.png $(PIXMAPS_DIR)/pixmap_audiocd.png
--	$(INSTALL_DATA) pixmap_copycd.png $(PIXMAPS_DIR)/pixmap_copycd.png
--	$(INSTALL_DATA) pixmap_datacd.png $(PIXMAPS_DIR)/pixmap_datacd.png
--	$(INSTALL_DATA) pixmap_dumpcd.png $(PIXMAPS_DIR)/pixmap_dumpcd.png
--	$(INSTALL_DATA) pixmap_help.png $(PIXMAPS_DIR)/pixmap_help.png
--	$(INSTALL_DATA) pixmap_mixedcd.png $(PIXMAPS_DIR)/pixmap_mixedcd.png
--	$(INSTALL_DATA) pixmap_open.png $(PIXMAPS_DIR)/pixmap_open.png
--	$(INSTALL_DATA) gcdmaster.desktop $(datadir)/gnome/apps/Applications/gcdmaster.desktop
-+	$(INSTALL_PROGRAM) $(PRG) $(DESTDIR)$(bindir)
-+	$(INSTALL_DATA) xcdrdao.man $(DESTDIR)$(man1dir)/xcdrdao.1
-+	$(INSTALL_DATA) gcdmaster.png $(DESTDIR)$(PIXMAPS_DIR)/gcdmaster.png
-+	$(INSTALL_DATA) pixmap_audiocd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_audiocd.png
-+	$(INSTALL_DATA) pixmap_copycd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_copycd.png
-+	$(INSTALL_DATA) pixmap_datacd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_datacd.png
-+	$(INSTALL_DATA) pixmap_dumpcd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_dumpcd.png
-+	$(INSTALL_DATA) pixmap_help.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_help.png
-+	$(INSTALL_DATA) pixmap_mixedcd.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_mixedcd.png
-+	$(INSTALL_DATA) pixmap_open.png $(DESTDIR)$(PIXMAPS_DIR)/pixmap_open.png
-+	$(INSTALL_DATA) gcdmaster.desktop $(DESTDIR)$(datadir)/gnome/apps/Applications/gcdmaster.desktop
+-	$(INSTALL_PROGRAM) @utils_targets@ $(bindir)
++	$(INSTALL_PROGRAM) @utils_targets@ $(DESTDIR)$(bindir)
  
  installdirs:
 -	$(srcdir)/../mkinstalldirs $(bindir)
--	$(srcdir)/../mkinstalldirs $(man1dir)
--	$(srcdir)/../mkinstalldirs $(PIXMAPS_DIR)
--	$(srcdir)/../mkinstalldirs $(datadir)/gnome/apps/Applications
 +	$(srcdir)/../mkinstalldirs $(DESTDIR)$(bindir)
-+	$(srcdir)/../mkinstalldirs $(DESTDIR)$(man1dir)
-+	$(srcdir)/../mkinstalldirs $(DESTDIR)$(PIXMAPS_DIR)
-+	$(srcdir)/../mkinstalldirs $(DESTDIR)$(datadir)/gnome/apps/Applications
+ #	$(srcdir)/../mkinstalldirs $(man1dir)
+ #	$(srcdir)/../mkinstalldirs $(CDRDAO_DATA_DIR)
  
- uninstall:
- 	rm -f $(bindir)/$(PRG) $(man1dir)/xcdrdao.1

@@ -1,16 +1,16 @@
-diff -Nur cdrdao-1.1.3.orig/paranoia/configure.in cdrdao-1.1.3/paranoia/configure.in
---- cdrdao-1.1.3.orig/paranoia/configure.in	Tue Oct 26 18:13:45 1999
-+++ cdrdao-1.1.3/paranoia/configure.in	Thu Mar 15 01:42:51 2001
-@@ -16,10 +16,10 @@
+--- cdrdao-1.1.7/paranoia/configure.in.orig	Wed Dec 25 21:01:50 2002
++++ cdrdao-1.1.7/paranoia/configure.in	Wed Dec 25 21:05:21 2002
+@@ -17,11 +17,11 @@
  	case $host in 
  	i?86-*-linux*)
  		DEBUG="-g -Wall -fsigned-char"
--		OPT="-O20 -ffast-math -fsigned-char -finline-functions";;
-+		OPT="$CFLAGS -ffast-math -fsigned-char -finline-functions";;
+-		OPT="-O20 -ffast-math -fsigned-char -finline-functions"
++		OPT="$CFLAGS -ffast-math -fsigned-char -finline-functions"
+                 ;;
  	*)
  		DEBUG="-g -Wall -fsigned-char"
--		OPT="-O20 -fsigned-char";;
-+		OPT="$CFLAGS -fsigned-char";;
+-		OPT="-O20 -fsigned-char"
++		OPT="$CFLAGS -fsigned-char"
+                 ;;
          esac
  fi
- 
