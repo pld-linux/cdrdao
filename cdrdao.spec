@@ -12,9 +12,10 @@ License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
-Source0:	http://www.ping.de/sites/daneb/%{name}-%{version}.src.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/cdrdao/%{name}-%{version}.src.tar.gz
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
+URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++-devel
