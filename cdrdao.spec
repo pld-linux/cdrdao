@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	gnome	# with gnome1
+%bcond_with	gnome1	# with gnome1
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
@@ -15,15 +15,15 @@ Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.src.tar.bz2
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-nolibs.patch
-Patch3:		%{name}-gcdmaster-paths.patch
-Patch4:		%{name}-pccts-antlr.patch
-Patch5:		%{name}-5-debian.patch.gz
+Patch3:		%{name}-pccts-antlr.patch
+Patch4:		%{name}-5-debian.patch.gz
+Patch5:		%{name}-desktop.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_gnome:BuildRequires:	gnome-libs-devel >= 1.2.3}
-%{?with_gnome:BuildRequires:	gnomemm-devel >= 1.1.17}
-%{?with_gnome:BuildRequires:	gtkmm-devel >= 1.2.5}
+%{?with_gnome1:BuildRequires:	gnome-libs-devel >= 1.2.3}
+%{?with_gnome1:BuildRequires:	gnomemm-devel >= 1.1.17}
+%{?with_gnome1:BuildRequires:	gtkmm-devel >= 1.2.5}
 BuildRequires:	lame-libs-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pccts >= 1.33MR33-8
@@ -81,12 +81,11 @@ cd ..
 %{__autoconf}
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 # false gtkmm-config path can be used to disable building of GNOME frontend
-applnkdir=%{_applnkdir}; export applnkdir
 PIXMAPS_DIR="%{_pixmapsdir}/gcdmaster"; export PIXMAPS_DIR
 %configure \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
-	%{?without_gnome:--with-gtkmm-exec-prefix=/}
+	%{?without_gnome1:--with-gtkmm-exec-prefix=/}
 
 %{__make}
 
@@ -108,11 +107,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/cdrdao/drivers
 %{_mandir}/man1/cdrdao.*
 
-%if %{with gnome}
+%if %{with gnome1}
 %files gcdmaster
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gcdmaster
-%{_mandir}/man1/gcdmaster.*
+%{_desktopdir}/gcdmaster.desktop
 %{_pixmapsdir}/*
-%{_applnkdir}/Utilities/CD-RW/gcdmaster.desktop
+%{_mandir}/man1/gcdmaster.*
 %endif
