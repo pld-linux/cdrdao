@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	gnome	# without gcdmaster
+%bcond_with	gnome	# without gcdmaster
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
@@ -88,8 +88,12 @@ sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
 	--with-scglib-inc=/usr/include/schily \
-	--with-scglib-lib=/usr/lib \
-	--with-xdao
+	%if %{with gnome}
+	--with-xdao \ 
+	%else
+	--without-xdao \
+	%endif
+	--with-scglib-lib=/usr/lib 
 
 %{__make}
 
