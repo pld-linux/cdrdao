@@ -1,0 +1,10 @@
+--- cdrdao-1.1.7/xdao/gcdmaster.desktop.orig	2002-10-06 20:53:56.000000000 +0200
++++ cdrdao-1.1.7/xdao/gcdmaster.desktop	2004-01-04 15:41:09.439400240 +0100
+@@ -3,5 +3,6 @@
+ Comment=Utility to Burn CDs
+ Exec=gcdmaster
+ Icon=gcdmaster/gcdmaster.png
+-Terminal=0
++Terminal=false
+ Type=Application
++Categories=DiscBurning
