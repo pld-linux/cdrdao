@@ -8,12 +8,13 @@ Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.1.8
-Release:	0.2
+Release:	0.3
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
 # Source0-md5:	10cfd445fa628fb32dacf02e555fdbba
 Source1:	%{name}.desktop
+Source2:	gcdmaster.png
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 URL:		http://cdrdao.sourceforge.net/
@@ -89,12 +90,13 @@ sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_desktopdir}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -113,6 +115,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gcdmaster
 %{_desktopdir}/gcdmaster.desktop
-#%{_pixmapsdir}/*
+%{_pixmapsdir}/*
 %{_mandir}/man1/gcdmaster.*
 %endif
