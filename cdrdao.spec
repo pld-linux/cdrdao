@@ -11,6 +11,7 @@ Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.src.tar.bz2
+# Source0-md5: a85c0fa006ad3af64b76fd86b10b2ad4
 Patch0:		%{name}-destdir.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-nolibs.patch
