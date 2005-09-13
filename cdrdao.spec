@@ -6,19 +6,17 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.1.9
+Version:	1.2.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
-# Source0-md5:	dd7df809fca7db8e212a6522688c166b
+# Source0-md5:	dc2bdef7a7c8973e678ba4a4a2d9cc7e
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
 Source2:	%{name}.drivers
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
-Patch2:		%{name}-DESTDIR.patch
-Patch3:		%{name}-mm.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -26,7 +24,10 @@ BuildRequires:	cdrtools-devel >= 3:2.01a25
 %{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.0.0}
 %{?with_gnome:BuildRequires:	gtkmm-devel >= 2.2.8}
 BuildRequires:	lame-libs-devel >= 3.92
+BuildRequires:	libao-devel >= 0.8
+BuildRequires:	libmad-devel >= 0.15.1b-4
 BuildRequires:	libstdc++-devel
+BuildRequires:	libvorbis-devel >= 1.0
 BuildRequires:	pccts >= 1.33MR33-8
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -71,12 +72,10 @@ niedestruktywne ciêcie danych audio.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p0
 
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if %{without gnome}
-sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
+sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.ac
 %endif
 
 %build
@@ -84,6 +83,7 @@ sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.in
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+PKG_CONFIG=%{_bindir}/pkg-config \
 %configure \
 	--with-pcctsbin=%{_bindir} \
 	--with-pcctsinc=/usr/lib/pccts/h \
