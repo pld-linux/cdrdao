@@ -1,5 +1,5 @@
---- cdrdao-1.1.7/configure.in~	2003-12-18 04:04:26.000000000 +0100
-+++ cdrdao-1.1.7/configure.in	2003-12-18 04:05:44.000000000 +0100
+--- cdrdao-1.1.7/configure.ac~	2003-12-18 04:04:26.000000000 +0100
++++ cdrdao-1.1.7/configure.ac	2003-12-18 04:05:44.000000000 +0100
 @@ -156,7 +156,7 @@
  
  dnl Checks for pccts parser generator
