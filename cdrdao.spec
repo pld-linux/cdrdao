@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	gnome	# without gcdmaster
+%bcond_without	mp3	# without mp3 and ogg
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
@@ -95,6 +96,10 @@ PKG_CONFIG=%{_bindir}/pkg-config \
 	%else
 	--without-xdao \
 	%endif
+	%if %{without mp3}
+	--without-ogg-support \
+	--without-mp3-support \
+	%endif 
 	--with-scglib-lib=/usr/lib 
 
 %{__make}
