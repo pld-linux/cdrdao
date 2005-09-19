@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with	gnome	# without gcdmaster
-%bcond_without	mp3	# without mp3 and ogg
+%bcond_with	gnome	# build gcdmaster
+%bcond_without	mp3	# without MP3 and Ogg support
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
@@ -23,11 +23,12 @@ URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdrtools-devel >= 3:2.01a25
-%{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.0.0}
-%{?with_gnome:BuildRequires:	gtkmm-devel >= 2.2.8}
+%{?with_gnome:BuildRequires:	gtkmm-devel >= 2.4.0}
 BuildRequires:	lame-libs-devel >= 3.92
 BuildRequires:	libao-devel >= 0.8
+%{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.6.0}
 BuildRequires:	libmad-devel >= 0.15.1b-4
+%{?with_gnome:BuildRequires:	libsigc++-devel >= 2.0.0}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libvorbis-devel >= 1.0
 BuildRequires:	pccts >= 1.33MR33-8
