@@ -1,7 +1,8 @@
 #
 # Conditional build:
 %bcond_with	gnome	# build gcdmaster
-%bcond_without	mp3	# without MP3 and Ogg support
+%bcond_without	mp3	# without MP3 support
+%bcond_without	ogg	# without Ogg support
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
@@ -24,13 +25,17 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdrtools-devel >= 3:2.01a25
 %{?with_gnome:BuildRequires:	gtkmm-devel >= 2.4.0}
+%{?with_mp3:BuildRequires:	lame-libs-devel >= 3.92}
+%if %{with mp3} || %{with ogg}
 BuildRequires:	lame-libs-devel >= 3.92
 BuildRequires:	libao-devel >= 0.8
+%endif
+%{?with_mp3:BuildRequires:	libmad-devel >= 0.15.1b-4}
 %{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.6.0}
 BuildRequires:	libmad-devel >= 0.15.1b-4
 %{?with_gnome:BuildRequires:	libsigc++-devel >= 2.0.0}
 BuildRequires:	libstdc++-devel
-BuildRequires:	libvorbis-devel >= 1.0
+%{?with_ogg:BuildRequires:	libvorbis-devel >= 1.0}
 BuildRequires:	pccts >= 1.33MR33-8
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -90,18 +95,12 @@ sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.ac
 PKG_CONFIG=%{_bindir}/pkg-config \
 %configure \
 	--with-pcctsbin=%{_bindir} \
-	--with-pcctsinc=/usr/lib/pccts/h \
-	--with-scglib-inc=/usr/include/schily \
-	%if %{with gnome}
-	--with-xdao \ 
-	%else
-	--without-xdao \
-	%endif
-	%if %{without mp3}
-	--without-ogg-support \
-	--without-mp3-support \
-	%endif 
-	--with-scglib-lib=/usr/lib 
+	--with-pcctsinc=%{_libdir}/pccts/h \
+	--with-scglib-inc=%{_includedir}/schily \
+	--with-scglib-lib=%{_libdir} \
+	--with%{!?with_gnome:out}-xdao \
+	--with%{!?with_mp3:out}-mp3-support \
+	--with%{!?with_ogg:out}-ogg-support
 
 %{__make}
 
