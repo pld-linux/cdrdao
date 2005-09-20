@@ -27,7 +27,6 @@ BuildRequires:	cdrtools-devel >= 3:2.01a25
 %{?with_gnome:BuildRequires:	gtkmm-devel >= 2.4.0}
 %{?with_mp3:BuildRequires:	lame-libs-devel >= 3.92}
 %if %{with mp3} || %{with ogg}
-BuildRequires:	lame-libs-devel >= 3.92
 BuildRequires:	libao-devel >= 0.8
 %endif
 %{?with_mp3:BuildRequires:	libmad-devel >= 0.15.1b-4}
