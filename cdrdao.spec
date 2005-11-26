@@ -8,12 +8,12 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
 Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.2.0
+Version:	1.2.1
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
-# Source0-md5:	dc2bdef7a7c8973e678ba4a4a2d9cc7e
+# Source0-md5:	d959c98e08105b5b8380de275bac1413
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
 Source2:	%{name}.drivers
@@ -36,6 +36,7 @@ BuildRequires:	libmad-devel >= 0.15.1b-4
 BuildRequires:	libstdc++-devel
 %{?with_ogg:BuildRequires:	libvorbis-devel >= 1.0}
 BuildRequires:	pccts >= 1.33MR33-8
+BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -111,7 +112,6 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/%{name}}
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/gcdmaster.desktop
-install xdao/stock/gcdmaster.png $RPM_BUILD_ROOT%{_pixmapsdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/drivers
 
 %clean
