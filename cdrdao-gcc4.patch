@@ -1,13 +1,12 @@
-diff -Nur cdrdao-1.2.0.org/trackdb/CueParser.cc cdrdao-1.2.0/trackdb/CueParser.cc
---- cdrdao-1.2.0.org/trackdb/CueParser.cc	2005-05-09 21:21:28.000000000 +0200
-+++ cdrdao-1.2.0/trackdb/CueParser.cc	2005-09-17 15:46:15.638476312 +0200
-@@ -23,6 +23,8 @@
- 
+--- cdrdao-1.2.1/trackdb/CueParser.cc.orig	2005-09-24 20:41:49.000000000 +0200
++++ cdrdao-1.2.1/trackdb/CueParser.cc	2005-11-26 02:35:15.000000000 +0100
+@@ -24,6 +24,8 @@
  #include "Cue2Toc.h"
+ #include "Toc.h"
  
 +class Toc;
 +
- extern Toc *parseToc(const char* tocBuffer, const char *filename);
+ extern Toc *parseToc(const char* , const char *);
  
  Toc *parseCue(FILE *fp, const char *filename)
 diff -Nur cdrdao-1.2.0.org/trackdb/FormatConverter.h cdrdao-1.2.0/trackdb/FormatConverter.h
