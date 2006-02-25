@@ -102,7 +102,9 @@ PKG_CONFIG=%{_bindir}/pkg-config \
 	--with%{!?with_mp3:out}-mp3-support \
 	--with%{!?with_ogg:out}-ogg-support
 
-%{__make}
+%{__make} \
+	CC="%{__cc}" \
+	COPTOPT="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
