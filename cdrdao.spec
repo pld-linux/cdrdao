@@ -83,7 +83,7 @@ niedestruktywne ciêcie danych audio.
 %patch2 -p1
 
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
-%if %{without gnome}
+%if !%{with gnome}
 sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.ac
 %endif
 
