@@ -5,8 +5,8 @@
 %bcond_without	ogg	# without Ogg support
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
-Summary(pl):	Narzêdzia do wypalania p³yt w trybie Disk At Once
-Summary(pt_BR):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
+Summary(pl.UTF-8):   NarzÄ™dzia do wypalania pÅ‚yt w trybie Disk At Once
+Summary(pt_BR.UTF-8):   Cdrdao - Escreve CD-Rs de Ã¡udio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.2.1
 Release:	1
@@ -44,21 +44,21 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Cdrdao records audio and data CD-Rs in Disk At Once mode. This mode
 gives much better control over contents of CD.
 
-%description -l pl
-Cdrdao zapisuje p³ytki audio i z danymi w trybie Disk At Once. W tym
-trybie masz znacznie wiêksz± kontrolê nad zawarto¶ci± p³ytki.
+%description -l pl.UTF-8
+Cdrdao zapisuje pÅ‚ytki audio i z danymi w trybie Disk At Once. W tym
+trybie masz znacznie wiÄ™kszÄ… kontrolÄ™ nad zawartoÅ›ciÄ… pÅ‚ytki.
 
-%description -l pt_BR
-Escreve CD-Rs de áudio em modo "disk-at-once" (DAO) permitindo
-controle sobre pre-gaps (tamanho reduzido a 0, dados não zerados de
-áudio) e informações de sub-canais como códigos ISRC. Todos os dados
-que são escritos no disco devem ser especificados através de um
-arquivo texto. Dados de áudio também podem estar no formato WAVE ou
+%description -l pt_BR.UTF-8
+Escreve CD-Rs de Ã¡udio em modo "disk-at-once" (DAO) permitindo
+controle sobre pre-gaps (tamanho reduzido a 0, dados nÃ£o zerados de
+Ã¡udio) e informaÃ§Ãµes de sub-canais como cÃ³digos ISRC. Todos os dados
+que sÃ£o escritos no disco devem ser especificados atravÃ©s de um
+arquivo texto. Dados de Ã¡udio tambÃ©m podem estar no formato WAVE ou
 raw.
 
 %package gcdmaster
 Summary:	GNOME frontend to cdrdao for composing audio CDs
-Summary(pl):	Frontend GNOME do cdrdao do sk³adania p³yt CD-Audio
+Summary(pl.UTF-8):   Frontend GNOME do cdrdao do skÅ‚adania pÅ‚yt CD-Audio
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
@@ -69,12 +69,12 @@ audio CDs from one or more audio files. It supports PQ-channel
 editing, entry of meta data like ISRC codes/CD-TEXT and non
 destructive cut of the audio data.
 
-%description gcdmaster -l pl
-gcdmaster pozwala na tworzenie plików toc dla cdrdao oraz mo¿e
-kontrolowaæ proces nagrywania. G³ównym celem jest sk³adanie p³yt
-CD-Audio z jednego lub wiêcej plików z d¼wiêkiem. Obs³uguje edycjê
-kana³u PQ, wpisy meta-danych takich jak kody ISRC/CD-TEXT oraz
-niedestruktywne ciêcie danych audio.
+%description gcdmaster -l pl.UTF-8
+gcdmaster pozwala na tworzenie plikÃ³w toc dla cdrdao oraz moÅ¼e
+kontrolowaÄ‡ proces nagrywania. GÅ‚Ã³wnym celem jest skÅ‚adanie pÅ‚yt
+CD-Audio z jednego lub wiÄ™cej plikÃ³w z dÅºwiÄ™kiem. ObsÅ‚uguje edycjÄ™
+kanaÅ‚u PQ, wpisy meta-danych takich jak kody ISRC/CD-TEXT oraz
+niedestruktywne ciÄ™cie danych audio.
 
 %prep
 %setup -q
