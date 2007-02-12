@@ -5,8 +5,8 @@
 %bcond_without	ogg	# without Ogg support
 #
 Summary:	Tools for burning CDRs in Disk At Once mode
-Summary(pl.UTF-8):   Narzędzia do wypalania płyt w trybie Disk At Once
-Summary(pt_BR.UTF-8):   Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
+Summary(pl.UTF-8):	Narzędzia do wypalania płyt w trybie Disk At Once
+Summary(pt_BR.UTF-8):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.2.1
 Release:	1
@@ -58,7 +58,7 @@ raw.
 
 %package gcdmaster
 Summary:	GNOME frontend to cdrdao for composing audio CDs
-Summary(pl.UTF-8):   Frontend GNOME do cdrdao do składania płyt CD-Audio
+Summary(pl.UTF-8):	Frontend GNOME do cdrdao do składania płyt CD-Audio
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
