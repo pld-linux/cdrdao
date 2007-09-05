@@ -1,4 +1,7 @@
 #
+# TODO:
+#	- update GNOME stuff
+#
 # Conditional build:
 %bcond_with	gnome	# build gcdmaster
 %bcond_without	mp3	# without MP3 support
@@ -8,12 +11,12 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl.UTF-8):	Narzędzia do wypalania płyt w trybie Disk At Once
 Summary(pt_BR.UTF-8):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.2.1
+Version:	1.2.2
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.gz
-# Source0-md5:	d959c98e08105b5b8380de275bac1413
+Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
+# Source0-md5:	f0cbf36907406cb4f4c568f9e6669a34
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
 Source2:	%{name}.drivers
