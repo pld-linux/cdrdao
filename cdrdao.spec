@@ -1,9 +1,6 @@
 #
-# TODO:
-#	- update GNOME stuff
-#
 # Conditional build:
-%bcond_with	gnome	# build gcdmaster
+%bcond_without	gnome	# don't build gcdmaster
 %bcond_without	mp3	# without MP3 support
 %bcond_without	ogg	# without Ogg support
 #
@@ -37,9 +34,10 @@ BuildRequires:	libao-devel >= 0.8
 BuildRequires:	libmad-devel >= 0.15.1b-4
 %{?with_gnome:BuildRequires:	libsigc++-devel >= 2.0.0}
 BuildRequires:	libstdc++-devel
-%{?with_ogg:BuildRequires:	libvorbis-devel >= 1.0}
+%{?with_ogg:BuildRequires:	libvorbis-devel >= 1:1.0}
 BuildRequires:	pccts >= 1.33MR33-8
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -64,6 +62,7 @@ Summary:	GNOME frontend to cdrdao for composing audio CDs
 Summary(pl.UTF-8):	Frontend GNOME do cdrdao do składania płyt CD-Audio
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
+Requires(post,postun):	shared-mime-info
 
 %description gcdmaster
 gcdmaster allows the creation of toc-files for cdrdao and can control
@@ -116,11 +115,18 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/%{name}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}/gcdmaster.desktop
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/drivers
+
+rm -r $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post gcdmaster
+%update_mime_database
+
+%postun gcdmaster
+%update_mime_database
 
 %files
 %defattr(644,root,root,755)
@@ -136,7 +142,9 @@ rm -rf $RPM_BUILD_ROOT
 %files gcdmaster
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gcdmaster
+%{_datadir}/gcdmaster
+%{_datadir}/mime/packages/gcdmaster.xml
 %{_desktopdir}/gcdmaster.desktop
 %{_pixmapsdir}/*
-%{_mandir}/man1/gcdmaster.*
+%{_mandir}/man1/gcdmaster.1*
 %endif
