@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Gnome CD Master
 GenericName=CD & DVD Burning
 GenericName[ca]=Programa per a cremar CD i DVD
@@ -52,7 +51,7 @@ Comment[zh_TW]=CD 燒錄程式
 Comment[zu]=Uhlelo lwemisebenzi olubhala i-CD
 Type=Application
 Exec=gcdmaster
-Icon=gcdmaster.png
+Icon=gcdmaster
 Terminal=false
 Categories=GTK;GNOME;Utility;DiscBurning;
 # vi: encoding=utf-8
