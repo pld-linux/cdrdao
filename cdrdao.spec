@@ -119,7 +119,9 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/%{name}}
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/drivers
 
+%if %{with gnome}
 rm -r $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
