@@ -21,6 +21,7 @@ Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 Patch2:		%{name}-gcc4.patch
 Patch3:		%{name}-sigc.patch
+Patch4:		%{name}-glibc.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -85,6 +86,7 @@ niedestruktywne cięcie danych audio.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p0
+%patch4 -p1
 
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if !%{with gnome}
