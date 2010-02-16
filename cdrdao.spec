@@ -8,20 +8,19 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl.UTF-8):	Narzędzia do wypalania płyt w trybie Disk At Once
 Summary(pt_BR.UTF-8):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.2.2
-Release:	2
+Version:	1.2.3
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
-# Source0-md5:	f0cbf36907406cb4f4c568f9e6669a34
+# Source0-md5:	8d15ba6280bb7ba2f4d6be31d28b3c0c
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
 Source2:	%{name}.drivers
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 Patch2:		%{name}-gcc4.patch
-Patch3:		%{name}-sigc.patch
-Patch4:		%{name}-glibc.patch
+Patch3:		%{name}-glibc.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -31,9 +30,9 @@ BuildRequires:	cdrtools-devel >= 3:2.01a25
 %if %{with mp3} || %{with ogg}
 BuildRequires:	libao-devel >= 0.8
 %endif
-%{?with_mp3:BuildRequires:	libmad-devel >= 0.15.1b-4}
 %{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.6.0}
 BuildRequires:	libmad-devel >= 0.15.1b-4
+%{?with_mp3:BuildRequires:	libmad-devel >= 0.15.1b-4}
 %{?with_gnome:BuildRequires:	libsigc++-devel >= 2.0.0}
 BuildRequires:	libstdc++-devel
 %{?with_ogg:BuildRequires:	libvorbis-devel >= 1:1.0}
@@ -63,8 +62,8 @@ raw.
 Summary:	GNOME frontend to cdrdao for composing audio CDs
 Summary(pl.UTF-8):	Frontend GNOME do cdrdao do składania płyt CD-Audio
 Group:		X11/Applications
-Requires:	%{name} = %{version}-%{release}
 Requires(post,postun):	shared-mime-info
+Requires:	%{name} = %{version}-%{release}
 
 %description gcdmaster
 gcdmaster allows the creation of toc-files for cdrdao and can control
@@ -85,8 +84,7 @@ niedestruktywne cięcie danych audio.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0
-%patch4 -p1
+%patch3 -p1
 
 sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if !%{with gnome}
@@ -136,13 +134,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CREDITS README README.PlexDAE 
+%doc CREDITS README README.PlexDAE
 %attr(755,root,root) %{_bindir}/cdrdao
 %attr(755,root,root) %{_bindir}/toc2*
 %attr(755,root,root) %{_bindir}/cue2toc
 %{_datadir}/%{name}
 %{_mandir}/man1/cdrdao.1*
 %{_mandir}/man1/cue2toc.1*
+%{_mandir}/man1/toc2cddb.1*
+%{_mandir}/man1/toc2cue.1*
 
 %if %{with gnome}
 %files gcdmaster
@@ -151,6 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gcdmaster
 %{_datadir}/mime/packages/gcdmaster.xml
 %{_desktopdir}/gcdmaster.desktop
+%{_sysconfdir}/gconf/schemas/gcdmaster.schemas
 %{_pixmapsdir}/*
 %{_mandir}/man1/gcdmaster.1*
 %endif
