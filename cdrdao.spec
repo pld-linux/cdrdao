@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do wypalania płyt w trybie Disk At Once
 Summary(pt_BR.UTF-8):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.2.3
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
@@ -90,6 +90,8 @@ sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if !%{with gnome}
 sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.ac
 %endif
+
+install %{SOURCE1} xdao/gcdmaster.desktop
 
 %build
 %{__aclocal}
