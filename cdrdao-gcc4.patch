@@ -50,3 +50,14 @@ diff -Naurp cdrdao-1.2.2.orig/xdao/AudioCDProject.cc cdrdao-1.2.2/xdao/AudioCDPr
  #include <gtkmm.h>
  #include <libgnome/gnome-i18n.h>
  
+--- cdrdao-1.2.3/dao/ScsiIf-linux.cc.orig	2009-09-28 12:12:03.000000000 +0200
++++ cdrdao-1.2.3/dao/ScsiIf-linux.cc	2010-06-03 17:47:13.502076082 +0200
+@@ -26,6 +26,8 @@
+ #include <string.h>
+ #include <assert.h>
+ #include <sys/ioctl.h>
++#include <sys/types.h>
++#include <sys/stat.h>
+ #include <glob.h>
+ #include <asm/param.h>
+ #include <scsi/scsi.h>
