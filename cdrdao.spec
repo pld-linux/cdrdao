@@ -12,7 +12,7 @@ Version:	1.2.3
 Release:	4
 License:	GPL v2+
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
 # Source0-md5:	8d15ba6280bb7ba2f4d6be31d28b3c0c
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
@@ -86,9 +86,9 @@ niedestruktywne cięcie danych audio.
 %patch2 -p1
 %patch3 -p1
 
-sed -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
+%{__sed} -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if !%{with gnome}
-sed -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.ac
+%{__sed} -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.ac
 %endif
 
 install %{SOURCE1} xdao/gcdmaster.desktop
