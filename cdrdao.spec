@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	Narzędzia do wypalania płyt w trybie Disk At Once
 Summary(pt_BR.UTF-8):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
 Version:	1.2.3
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
@@ -22,6 +22,7 @@ Patch1:		%{name}-pccts-antlr.patch
 Patch2:		%{name}-gcc4.patch
 Patch3:		%{name}-glibc.patch
 URL:		http://cdrdao.sourceforge.net/
+BuildRequires:	GConf2-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdrtools-devel >= 3:2.01a25
