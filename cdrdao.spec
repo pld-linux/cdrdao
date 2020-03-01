@@ -8,19 +8,18 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl.UTF-8):	Narzędzia do wypalania płyt w trybie Disk At Once
 Summary(pt_BR.UTF-8):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.2.3
-Release:	7
+Version:	1.2.4
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
-# Source0-md5:	8d15ba6280bb7ba2f4d6be31d28b3c0c
+# Source0-md5:	2ada887d1b30b440867b8df0d3023cf7
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
 Source2:	%{name}.drivers
 Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 Patch2:		%{name}-gcc4.patch
-Patch3:		%{name}-glibc.patch
 URL:		http://cdrdao.sourceforge.net/
 BuildRequires:	GConf2-devel
 BuildRequires:	autoconf
@@ -85,14 +84,13 @@ niedestruktywne cięcie danych audio.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %{__sed} -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if !%{with gnome}
-%{__sed} -i -e 's/^en_xdao=yes$/en_xdao=no/' configure.ac
+%{__sed} -i -e 's/^en_gcdmaster=yes$/en_gcdmaster=no/' configure.ac
 %endif
 
-install %{SOURCE1} xdao/gcdmaster.desktop
+install %{SOURCE1} gcdmaster/gcdmaster.desktop
 
 %build
 %{__aclocal}
@@ -105,7 +103,7 @@ PKG_CONFIG=%{_bindir}/pkg-config \
 	--with-pcctsinc=%{_libdir}/pccts/h \
 	--with-scglib-inc=%{_includedir}/schily \
 	--with-scglib-lib=%{_libdir} \
-	--with%{!?with_gnome:out}-xdao \
+	--with%{!?with_gnome:out}-gcdmaster \
 	--with%{!?with_mp3:out}-mp3-support \
 	--with%{!?with_ogg:out}-ogg-support
 

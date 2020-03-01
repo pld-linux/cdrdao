@@ -4,10 +4,10 @@
  AC_CHECK_FUNC(sched_setscheduler,AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,""),
    AC_CHECK_LIB(posix4,sched_setscheduler,[use_libposix4=yes;AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,"")]))
  
--AC_CHECK_LIB(socket,socket,[use_libsocket=yes])
--AC_CHECK_LIB(socket,connect,[use_libsocket=yes])
-+AC_CHECK_FUNC(socket, , [AC_CHECK_LIB(socket,socket,[use_libsocket=yes])])
-+AC_CHECK_FUNC(connect, , [AC_CHECK_LIB(socket,connect,[use_libsocket=yes])])
+-AC_CHECK_LIB([socket],[socket],[use_libsocket=yes])
+-AC_CHECK_LIB([socket],[connect],[use_libsocket=yes])
++AC_CHECK_FUNC(socket, , [AC_CHECK_LIB([socket],[socket],[use_libsocket=yes])])
++AC_CHECK_FUNC(connect, , [AC_CHECK_LIB([socket],[connect],[use_libsocket=yes])])
  
  dnl Add 'libsocket' if required
  if test "$use_libsocket" = yes; then
