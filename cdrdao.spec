@@ -21,7 +21,7 @@ Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 Patch2:		%{name}-gcc4.patch
 URL:		http://cdrdao.sourceforge.net/
-BuildRequires:	GConf2-devel
+%{?with_gnome:BuildRequires:	GConf2-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cdrtools-devel >= 3:2.01a25
@@ -86,8 +86,11 @@ niedestruktywne cięcie danych audio.
 %patch2 -p1
 
 %{__sed} -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
-%if !%{with gnome}
-%{__sed} -i -e 's/^en_gcdmaster=yes$/en_gcdmaster=no/' configure.ac
+%if %{without gnome}
+%{__sed} -i \
+	-e 's/^en_gcdmaster=yes$/en_gcdmaster=no/' \
+	-e 's/^AM_GCONF_SOURCE_2$/#AM_GCONF_SOURCE_2/' \
+	configure.ac
 %endif
 
 install %{SOURCE1} gcdmaster/gcdmaster.desktop
