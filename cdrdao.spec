@@ -12,7 +12,7 @@ Version:	1.2.4
 Release:	1
 License:	GPL v2+
 Group:		Applications/System
-Source0:	http://downloads.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
+Source0:	https://downloads.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
 # Source0-md5:	2ada887d1b30b440867b8df0d3023cf7
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
