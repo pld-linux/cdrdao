@@ -1,11 +1,11 @@
 --- cdrdao-1.1.7/configure.ac~	2003-12-18 04:04:26.000000000 +0100
 +++ cdrdao-1.1.7/configure.ac	2003-12-18 04:05:44.000000000 +0100
 @@ -165,7 +165,7 @@
-   pccts_target="pccts"
  
+   en_pccts="yes"
  else
 -  AC_PATH_PROG(antlr_path,antlr,no,$pcctsbin)
 +  AC_PATH_PROG(antlr_path,pccts-antlr,no,$pcctsbin)
    AC_PATH_PROG(dlg_path,dlg,no,$pcctsbin)
  
-   if test $antlr_path = "no"; then
+   if test $antlr_path = "no" || test $dlg_path = "no"; then

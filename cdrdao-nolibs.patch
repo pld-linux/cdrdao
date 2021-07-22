@@ -1,8 +1,8 @@
 --- cdrdao-1.2.3/configure.ac.orig	2010-02-16 13:13:42.000000000 +0100
 +++ cdrdao-1.2.3/configure.ac	2010-02-16 13:14:14.000000000 +0100
 @@ -85,8 +85,8 @@
- AC_CHECK_FUNC(sched_setscheduler,AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,""),
-   AC_CHECK_LIB(posix4,sched_setscheduler,[use_libposix4=yes;AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,"")]))
+ AC_CHECK_FUNC([sched_setscheduler],[AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,"")],
+   [AC_CHECK_LIB(posix4,sched_setscheduler,[use_libposix4=yes;AC_DEFINE(HAVE_SCHED_SETSCHEDULER,1,"")])])
  
 -AC_CHECK_LIB([socket],[socket],[use_libsocket=yes])
 -AC_CHECK_LIB([socket],[connect],[use_libsocket=yes])

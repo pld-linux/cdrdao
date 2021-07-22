@@ -32,24 +32,13 @@ diff -Naurp cdrdao-1.2.2.orig/trackdb/FormatMp3.cc cdrdao-1.2.2/trackdb/FormatMp
 --- cdrdao-1.2.2.orig/trackdb/FormatMp3.cc	2005-09-24 20:28:43.000000000 +0000
 +++ cdrdao-1.2.2/trackdb/FormatMp3.cc		2008-03-07 11.14.07.000000000 +0000
 @@ -25,6 +25,7 @@
- #include <stdlib.h>
  #include <unistd.h>
+ #include <string.h>
  #include <fcntl.h>
 +#include <cstring> 
  #include <sys/types.h>
  #include <sys/stat.h>
  #include <sys/mman.h>
-diff -Naurp cdrdao-1.2.2.orig/xdao/AudioCDProject.cc cdrdao-1.2.2/xdao/AudioCDProject.cc
---- cdrdao-1.2.2.orig/gcdmaster/AudioCDProject.cc	2006-09-18 10:42:26.000000000 +0000
-+++ cdrdao-1.2.2/gcdmaster/AudioCDProject.cc	2008-03-07 11:15:26.000000000 +0000
-@@ -18,6 +18,7 @@
-  */
- 
- #include <assert.h>
-+#include <cstring>
- #include <gtkmm.h>
- #include <libgnome/gnome-i18n.h>
- 
 --- cdrdao-1.2.3/dao/ScsiIf-linux.cc.orig	2009-09-28 12:12:03.000000000 +0200
 +++ cdrdao-1.2.3/dao/ScsiIf-linux.cc	2010-06-03 17:47:13.502076082 +0200
 @@ -26,6 +26,8 @@
