@@ -81,9 +81,9 @@ niedestruktywne cięcie danych audio.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 
 %{__sed} -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if %{without gnome}
