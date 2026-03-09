@@ -8,12 +8,12 @@ Summary:	Tools for burning CDRs in Disk At Once mode
 Summary(pl.UTF-8):	Narzędzia do wypalania płyt w trybie Disk At Once
 Summary(pt_BR.UTF-8):	Cdrdao - Escreve CD-Rs de áudio em modo "disk-at-once"
 Name:		cdrdao
-Version:	1.2.4
-Release:	3
+Version:	1.2.6
+Release:	1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	https://downloads.sourceforge.net/cdrdao/%{name}-%{version}.tar.bz2
-# Source0-md5:	2ada887d1b30b440867b8df0d3023cf7
+# Source0-md5:	f59689d847d56647187d4de487e3487d
 Source1:	%{name}.desktop
 # http://cdrdao.sourceforge.net/drives.html#dt
 Source2:	%{name}.drivers
@@ -21,19 +21,17 @@ Patch0:		%{name}-nolibs.patch
 Patch1:		%{name}-pccts-antlr.patch
 Patch2:		%{name}-gcc4.patch
 URL:		http://cdrdao.sourceforge.net/
-%{?with_gnome:BuildRequires:	GConf2-devel}
+%{?with_gnome:BuildRequires:	gtkmm3-devel >= 3.0.0}
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	cdrtools-devel >= 3:2.01a25
-%{?with_gnome:BuildRequires:	gtkmm-devel >= 2.4.0}
-%{?with_mp3:BuildRequires:	lame-libs-devel >= 3.92}
+%{?with_gnome:BuildRequires:	libsigc++-devel >= 2.0.0}
+BuildRequires:	lame-libs-devel
+%{?with_mp3:BuildRequires:	lame-libs-devel}
 %if %{with mp3} || %{with ogg}
 BuildRequires:	libao-devel >= 0.8
 %endif
-%{?with_gnome:BuildRequires:	libgnomeuimm-devel >= 2.6.0}
 BuildRequires:	libmad-devel >= 0.15.1b-4
 %{?with_mp3:BuildRequires:	libmad-devel >= 0.15.1b-4}
-%{?with_gnome:BuildRequires:	libsigc++-devel >= 2.0.0}
 BuildRequires:	libstdc++-devel
 %{?with_ogg:BuildRequires:	libvorbis-devel >= 1:1.0}
 BuildRequires:	pccts >= 1.33MR33-8
@@ -59,8 +57,8 @@ arquivo texto. Dados de áudio também podem estar no formato WAVE ou
 raw.
 
 %package gcdmaster
-Summary:	GNOME frontend to cdrdao for composing audio CDs
-Summary(pl.UTF-8):	Frontend GNOME do cdrdao do składania płyt CD-Audio
+Summary:	GTK+ 3 frontend to cdrdao for composing audio CDs
+Summary(pl.UTF-8):	Frontend GTK+ 3 do cdrdao do składania płyt CD-Audio
 Group:		X11/Applications
 Requires(post,postun):	shared-mime-info
 Requires:	%{name} = %{version}-%{release}
@@ -83,17 +81,16 @@ niedestruktywne cięcie danych audio.
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
-%patch -P2 -p1
+#%patch -P2 -p1
 
-%{__sed} -i -e 's#/usr/src/linux/include##g' scsilib/DEFAULT*/Defaults.linux
 %if %{without gnome}
 %{__sed} -i \
 	-e 's/^en_gcdmaster=yes$/en_gcdmaster=no/' \
-	-e 's/^AM_GCONF_SOURCE_2$/#AM_GCONF_SOURCE_2/' \
 	configure.ac
 %endif
 
-install %{SOURCE1} gcdmaster/gcdmaster.desktop
+# we use our own .desktop file with more translations
+cp -p %{SOURCE1} gcdmaster/gcdmaster.desktop
 
 %build
 %{__aclocal}
@@ -103,9 +100,7 @@ install %{SOURCE1} gcdmaster/gcdmaster.desktop
 PKG_CONFIG=%{_bindir}/pkg-config \
 %configure \
 	--with-pcctsbin=%{_bindir} \
-	--with-pcctsinc=%{_libdir}/pccts/h \
-	--with-scglib-inc=%{_includedir}/schily \
-	--with-scglib-lib=%{_libdir} \
+	--with-pcctsinc=%{_includedir}/pccts/h \
 	--with%{!?with_gnome:out}-gcdmaster \
 	--with%{!?with_mp3:out}-mp3-support \
 	--with%{!?with_ogg:out}-ogg-support
@@ -116,29 +111,30 @@ PKG_CONFIG=%{_bindir}/pkg-config \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/%{name}}
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/%{name}/drivers
 
-%if %{with gnome}
-rm -r $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
-%endif
+# legacy GNOME stuff
+rm -rf $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post gcdmaster
 %update_mime_database
+%glib_compile_schemas
 
 %postun gcdmaster
 %update_mime_database
+%glib_compile_schemas
 
 %files
 %defattr(644,root,root,755)
-%doc CREDITS README README.PlexDAE
+%doc AUTHORS CREDITS README README.PlexDAE README.Win32
 %attr(755,root,root) %{_bindir}/cdrdao
 %attr(755,root,root) %{_bindir}/toc2*
 %attr(755,root,root) %{_bindir}/cue2toc
@@ -155,7 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gcdmaster
 %{_datadir}/mime/packages/gcdmaster.xml
 %{_desktopdir}/gcdmaster.desktop
-%{_sysconfdir}/gconf/schemas/gcdmaster.schemas
+%{_datadir}/glib-2.0/schemas/org.gnome.gcdmaster.gschema.xml
 %{_pixmapsdir}/*
 %{_mandir}/man1/gcdmaster.1*
 %endif
